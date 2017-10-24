@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '357450624715416',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v2.10'
+    });
+    FB.AppEvents.logPageView();
+   
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+       
+    function check(){
+    FB.getLoginStatus(function(response) {
+    if(response.status=='connected'){
+        var accessToken = response.authResponse.accessToken;
+        FB.api('/me', {fields: 'id,name,email,gender,locale,first_name,last_name'},function(response) {
+        sessionStorage.setItem("accesstoken",response.email)
+        console.log(response);
+         });
+    
+        
+        //window.location='data.html';
+    }
+});}
+</script>
+    <h3>Login Integration via Facebook</h3>
+    <fb:login-button scope="public_profile,email" onlogin="check();">
+</fb:login-button>
+</html>

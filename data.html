@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+  function getName(){
+        //call = '/'+sessionStorage.getItem(accessToken)+''
+        FB.api('/me', function(response) {
+        console.log(response.email);
+});
+    }
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '357450624715416',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v2.10'
+    });
+    FB.AppEvents.logPageView();
+    getName();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+    
+    </script>
+    <h3 id='hello'>Hello</h3>
+</body>
+</html>
